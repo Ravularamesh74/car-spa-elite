@@ -51,13 +51,13 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-4 mt-4">
                 <a href="#" className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
-                  <Instagram className="w-4 h-4" />
+                  <Globe className="w-4 h-4" />
                 </a>
                 <a href="#" className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
-                  <Facebook className="w-4 h-4" />
+                  <MessageCircle className="w-4 h-4" />
                 </a>
                 <a href="#" className="w-9 h-9 rounded-full border border-border flex items-center justify-center hover:border-primary hover:text-primary transition-colors">
-                  <Youtube className="w-4 h-4" />
+                  <Play className="w-4 h-4" />
                 </a>
               </div>
             </div>
