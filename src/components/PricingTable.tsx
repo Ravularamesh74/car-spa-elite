@@ -1,65 +1,112 @@
+"use client";
+
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Phone } from "lucide-react";
 
 const pricingData = [
-  { service: "Car Inspection / Diagnostics", min: "₹399", max: "₹599" },
-  { service: "Mini / Hatchback Car Wash", min: "₹249", max: "₹2,499" },
-  { service: "Sedan Car Wash", min: "₹299", max: "₹2,699" },
-  { service: "SUV & Premium Car Wash", min: "₹349", max: "₹2,990" },
-  { service: "Car Interior Spa", min: "₹1,199", max: "₹1,599" },
-  { service: "Car Rubbing & Polish", min: "₹1,499", max: "₹2,499" },
-  { service: "Car Dry Cleaning", min: "₹1,599", max: "₹2,599" },
-  { service: "Ceramic Coating", min: "₹5,999", max: "₹15,999" },
-  { service: "PPF Coating", min: "₹15,000", max: "₹1,50,000" },
-  { service: "Graphene Coating", min: "₹8,999", max: "₹25,999" },
-  { service: "Teflon Coating", min: "₹2,999", max: "₹5,999" },
-  { service: "Silencer Coating", min: "₹1,299", max: "₹1,699" },
+  { service: "Mini / Hatchback Wash", min: 249, max: 2499, category: "wash" },
+  { service: "Sedan Wash", min: 299, max: 2699, category: "wash" },
+  { service: "SUV Wash", min: 349, max: 2990, category: "wash" },
+  { service: "Interior Spa", min: 1199, max: 1599, category: "interior" },
+  { service: "Rubbing & Polish", min: 1499, max: 2499, category: "interior" },
+  { service: "Ceramic Coating", min: 5999, max: 15999, category: "coating", popular: true },
+  { service: "PPF Coating", min: 15000, max: 150000, category: "coating" },
+  { service: "Graphene Coating", min: 8999, max: 25999, category: "coating" },
 ];
 
-const PricingTable = () => {
-  return (
-    <section id="pricing" className="py-24">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="font-body text-sm tracking-[0.3em] uppercase text-primary font-medium">Transparent Pricing</span>
-          <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase mt-3 text-foreground">
-            Service <span className="text-gradient-gold">Charges</span>
-          </h2>
-          <p className="font-body text-muted-foreground mt-4">Approximate charges in Hyderabad</p>
-          <div className="glow-line w-24 mx-auto mt-4" />
-        </motion.div>
+const categories = ["all", "wash", "interior", "coating"];
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-3xl mx-auto rounded-lg border border-border overflow-hidden"
-        >
-          <div className="grid grid-cols-3 bg-card/80 border-b border-border px-6 py-4">
-            <span className="font-heading text-sm uppercase tracking-wider text-primary font-semibold">Service</span>
-            <span className="font-heading text-sm uppercase tracking-wider text-primary font-semibold text-center">Min Price</span>
-            <span className="font-heading text-sm uppercase tracking-wider text-primary font-semibold text-right">Max Price</span>
-          </div>
-          {pricingData.map((row, i) => (
-            <div
-              key={row.service}
-              className={`grid grid-cols-3 px-6 py-3.5 text-sm font-body ${
-                i % 2 === 0 ? "bg-card/40" : "bg-card/20"
-              } border-b border-border/50 hover:bg-primary/5 transition-colors`}
+const PricingSection = () => {
+  const [active, setActive] = useState("all");
+
+  const filtered =
+    active === "all"
+      ? pricingData
+      : pricingData.filter((p) => p.category === active);
+
+  return (
+    <section className="py-28 relative overflow-hidden">
+      
+      {/* 🔥 background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-full" />
+
+      <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+        
+        {/* HEADER */}
+        <div className="text-center mb-12">
+          <span className="text-xs tracking-[0.4em] uppercase text-primary">
+            Pricing
+          </span>
+
+          <h2 className="text-5xl font-extrabold mt-4">
+            Transparent{" "}
+            <span className="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+              Charges
+            </span>
+          </h2>
+        </div>
+
+        {/* 🔥 FILTERS */}
+        <div className="flex justify-center gap-3 mb-10 flex-wrap">
+          {categories.map((c) => (
+            <button
+              key={c}
+              onClick={() => setActive(c)}
+              className={`px-4 py-2 rounded-full text-sm capitalize transition ${
+                active === c
+                  ? "bg-primary text-black"
+                  : "bg-white/5 text-white/60 hover:bg-white/10"
+              }`}
             >
-              <span className="text-foreground">{row.service}</span>
-              <span className="text-muted-foreground text-center">{row.min}</span>
-              <span className="text-primary font-semibold text-right">{row.max}</span>
-            </div>
+              {c}
+            </button>
           ))}
-        </motion.div>
+        </div>
+
+        {/* 🔥 CARDS */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {filtered.map((item, i) => (
+            <motion.div
+              key={item.service}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05 }}
+              whileHover={{ scale: 1.03 }}
+              className="relative p-[1px] rounded-2xl bg-gradient-to-br from-primary/30 to-transparent"
+            >
+              <div className="bg-black/60 backdrop-blur-xl border border-white/10 rounded-2xl p-6 relative">
+
+                {/* 🔥 popular badge */}
+                {item.popular && (
+                  <div className="absolute top-4 right-4 text-xs bg-primary text-black px-2 py-1 rounded-full">
+                    Most Popular
+                  </div>
+                )}
+
+                <h3 className="text-lg font-bold text-white mb-2">
+                  {item.service}
+                </h3>
+
+                <div className="text-2xl font-bold text-primary mb-4">
+                  ₹{item.min.toLocaleString()} — ₹{item.max.toLocaleString()}
+                </div>
+
+                <motion.a
+                  href="https://wa.me/919640059577"
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-sm font-semibold"
+                >
+                  <Phone className="w-4 h-4" />
+                  Book Now
+                </motion.a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-export default PricingTable;
+export default PricingSection;
