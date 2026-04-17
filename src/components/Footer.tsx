@@ -23,6 +23,12 @@ const Footer = () => {
               <li>Ceramic Coating</li>
               <li>PPF Protection</li>
               <li>Engine Bay Detail</li>
+              <li>Bike Wash</li>
+              <li>Scooter Wash</li>
+              <li>Electric Vehicle Wash</li>
+              <li>Complete Car Detailing</li>
+              <li>Other</li>
+
             </ul>
           </div>
 
@@ -35,6 +41,7 @@ const Footer = () => {
               <li><a href="#gallery" className="hover:text-primary transition-colors">Gallery</a></li>
               <li><a href="#faq" className="hover:text-primary transition-colors">FAQ</a></li>
               <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
+              
             </ul>
           </div>
 
@@ -66,7 +73,7 @@ const Footer = () => {
 
         <div className="glow-line w-full mt-12 mb-6" />
         <div className="text-center font-body text-xs text-muted-foreground">
-          © 2026 AutoLuxDetail. All rights reserved. Premium Car Detailing in Hyderabad.
+          © 2026 Aquawash. All rights reserved. Premium Car Detailing in Hyderabad.
         </div>
       </div>
     </footer>

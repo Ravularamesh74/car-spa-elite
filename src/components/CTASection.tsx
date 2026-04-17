@@ -93,6 +93,10 @@ const CTASection = () => {
                 <option>PPF Protection</option>
                 <option>Engine Bay Detailing</option>
                 <option>Complete Car Detailing</option>
+                <option>Bike Wash</option>
+                <option>Scooter Wash</option>
+                <option>Electric Vehicle Wash</option>
+                <option>Other</option>
               </select>
               <select
                 className="w-full bg-muted border border-border rounded-sm px-4 py-3 font-body text-sm text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
@@ -102,6 +106,11 @@ const CTASection = () => {
                 <option>Sedan</option>
                 <option>SUV / MUV</option>
                 <option>Luxury / Premium</option>
+                <option>Commercial Vehicle</option>
+                <option>Bike</option>
+                <option>Scooter</option>
+                <option>Electric Vehicle</option>
+                <option>Other</option>
               </select>
               <textarea
                 placeholder="Any special requests..."
