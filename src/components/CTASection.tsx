@@ -32,7 +32,7 @@ const CTASection = () => {
               </div>
               <div>
                 <div className="font-heading text-sm uppercase font-bold text-foreground">Call / WhatsApp</div>
-                <a href="tel:+918333965678" className="font-body text-muted-foreground hover:text-primary transition-colors">+91 83339 65678</a>
+                <a href="tel:+919640059577" className="font-body text-muted-foreground hover:text-primary transition-colors">+91 9640059577</a>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -59,7 +59,7 @@ const CTASection = () => {
               </div>
               <div>
                 <div className="font-heading text-sm uppercase font-bold text-foreground">Email</div>
-                <p className="font-body text-muted-foreground">info@autoluxdetail.com</p>
+                <p className="font-body text-muted-foreground">rameshjohnny98@gmail.com</p>
               </div>
             </div>
           </motion.div>
